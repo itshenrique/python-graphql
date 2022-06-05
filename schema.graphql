@@ -1,0 +1,36 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Vehicle {
+    id: ID!
+    manufacturer: String!
+    model: String!
+    color: String!
+    year: String!
+    created_at: String!
+}
+
+type VehicleResult {
+    success: Boolean!
+    errors: [String]
+    vehicle: Vehicle
+}
+
+type VehiclesResult {
+    success: Boolean!
+    errors: [String]
+    vehicles: [Vehicle]
+}
+
+type Query {
+    listVehicles: VehiclesResult!
+    getVehicle(id: ID!): VehicleResult!
+}
+
+type Mutation {
+    createVehicle(manufacturer: String!, model: String!, color: String, year: String, created_at: String): VehicleResult!
+    updateVehicle(id: ID!, manufacturer: String!, model: String!, color: String, year: String): VehicleResult!
+    deleteVehicle(id: ID!): VehicleResult!
+}
